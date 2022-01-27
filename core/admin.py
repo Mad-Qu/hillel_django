@@ -15,7 +15,7 @@ class TabularInlineLikes(admin.TabularInline):
 
 class PostAdmin(admin.ModelAdmin):
     inlines=[TabularInlineLikes]
-    list_display = ("title", "user")
+    list_display = ("title", "user", "created_at")
 
 
 admin.site.register(models.Post, PostAdmin)
