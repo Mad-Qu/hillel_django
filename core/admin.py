@@ -11,10 +11,10 @@ from core import models
 #     pass
 
 class TabularInlineLikes(admin.TabularInline):
-    model=models.Likes
+    model = models.Likes
 
 class PostAdmin(admin.ModelAdmin):
-    inlines=[TabularInlineLikes]
+    inlines = [TabularInlineLikes]
     list_display = ("title", "user", "created_at")
 
 

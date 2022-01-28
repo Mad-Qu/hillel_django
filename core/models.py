@@ -1,7 +1,7 @@
 from django.db import models
 from config import settings
 
-class CommonFields(models.Model):
+class TimestampMixin(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -9,7 +9,7 @@ class CommonFields(models.Model):
     class Meta:
         abstract = True
 
-class Post(CommonFields):
+class Post(TimestampMixin):
     title = models.CharField(max_length=100, null=False, blank=False) # blank=False - нельзя оставлять пустым
     content = models.TextField(null=False, blank=False)
     image = models.CharField(max_length=255, null=True, blank=True) # blank=True - можно оставлять пустым
@@ -19,7 +19,7 @@ class Post(CommonFields):
         return f"{self.title}"
 
 
-class Likes(CommonFields):
+class Likes(TimestampMixin):
     post = models.ForeignKey("Post", null=False, blank=False, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False, blank=False, on_delete=models.CASCADE)
     status = models.BooleanField(null=True, blank=True)
