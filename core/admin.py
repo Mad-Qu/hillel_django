@@ -1,5 +1,6 @@
 from django.contrib import admin
 from core import models
+
 # from .models import Likes, Post
 
 # @admin.register(Likes)
@@ -10,8 +11,10 @@ from core import models
 # class PostAdmin(admin.ModelAdmin):
 #     pass
 
+
 class TabularInlineLikes(admin.TabularInline):
     model = models.Likes
+
 
 class PostAdmin(admin.ModelAdmin):
     inlines = [TabularInlineLikes]
