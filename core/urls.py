@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import posts
+from .views import PostView
 
 app_name = "core"
 
-urlpatterns = [path("", posts)]
+urlpatterns = [
+    path("", PostView.as_view()),
+]

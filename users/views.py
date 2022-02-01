@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.contrib.auth import get_user_model
 
-# Create your views here.
+User = get_user_model()
+
+
+def users(request):
+    users = User.objects.all()
+    results = ", ".join([user.username for user in users])
+    return HttpResponse(results)
