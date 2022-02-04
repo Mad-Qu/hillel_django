@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <a href="/posts">&#8592 Back</a>
+
+    <h3> {{ object }} </h3> 
+    <p> {{ object.content }} </p>
+    <p> ------------ </p>
+    <p> Автор поста: <i> {{ object.user.first_name }} {{ object.user.last_name }} </i></p>
+    <p> Пост создан: <i> {{ object.created_at }} </p></i>
+    <p> ------------ </p>
+
+    <a href="{% url 'posts:delete' object.id %}">Delete post</a>
+
+{% endblock content %}
