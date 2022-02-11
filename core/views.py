@@ -1,7 +1,11 @@
 from django.urls import reverse_lazy
 from .models import Post
-from django.views.generic import ListView, DetailView, DeleteView
+from .forms import PostForm
+from django.contrib.auth import get_user_model
+from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 
+
+User = get_user_model()
 
 class PostView(ListView):
     template_name = "core/posts.html"
@@ -36,8 +40,20 @@ class PostDeleteView(DeleteView):
     pk_url_kwarg = 'post_id'
     success_url = reverse_lazy("posts:list")
 
-# class PostUpdateView():
-#     pass
+class PostUpdateView(UpdateView):
+    queryset = Post.objects.all()
+    template_name = 'core/post_update.html'
+    pk_url_kwarg = 'post_id'
+    fields = ['title', 'content']
+    success_url = reverse_lazy("posts:list")
 
-# class PostCreateView():
-#     pass
+class PostCreateView(CreateView):
+    queryset = Post.objects.all()
+    template_name = 'core/post_create.html'
+    form_class = PostForm
+    success_url = reverse_lazy("posts:list")
+
+    def form_valid(self, form):
+        user = User.objects.first()
+        form.instance.user = user
+        return super().form_valid(form)

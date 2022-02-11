@@ -11,6 +11,8 @@
     <p> Пост создан: <i> {{ object.created_at }} </p></i>
     <p> ------------ </p>
 
+    <a href="{% url 'posts:update' object.id %}">Update Post</a>
+    <p></p>
     <a href="{% url 'posts:delete' object.id %}">Delete post</a>
 
 {% endblock content %}
