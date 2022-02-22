@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <a href="/posts">&#8592 Back</a>
+    <a href="/posts">&#8592 Back to posts list</a>
 
     <h3> {{ object }} </h3> 
     <p> {{ object.content }} </p>
@@ -11,8 +11,10 @@
     <p> Пост создан: <i> {{ object.created_at }} </p></i>
     <p> ------------ </p>
 
-    <a href="{% url 'posts:update' object.id %}">Update Post</a>
-    <p></p>
-    <a href="{% url 'posts:delete' object.id %}">Delete post</a>
+    {% if post.user == user %}
+        <a href="{% url 'posts:update' object.id %}">[ Update Post ]</a>
+        ~
+        <a href="{% url 'posts:delete' object.id %}">[ Delete post ]</a>
+    {% endif %}
 
 {% endblock content %}

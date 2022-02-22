@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <a href="/posts">&#8592 Back to posts list</a>
+
     <h3>{{ object }}</h3>
     <p>{{ post.content }}</p>
     <form action="" method="post">{% csrf_token %}

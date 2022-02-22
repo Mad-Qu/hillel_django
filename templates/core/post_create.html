@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
+    <a href="/posts">&#8592 Back to posts list</a>
+
     <h2>Post Creation</h2>
     <form method="post">
         {% csrf_token %}

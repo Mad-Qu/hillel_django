@@ -54,6 +54,6 @@ class PostCreateView(CreateView):
     success_url = reverse_lazy("posts:list")
 
     def form_valid(self, form):
-        user = User.objects.first()
+        user = self.request.user
         form.instance.user = user
         return super().form_valid(form)

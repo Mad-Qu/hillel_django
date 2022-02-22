@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-n_b0t-$^u51h#8lae_ge+93+z8#chrg9!_8+hj(ny7am8ip9o9"
@@ -88,3 +90,6 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "auth.User"
+
+LOGIN_REDIRECT_URL = reverse_lazy("posts:list")
+LOGOUT_REDIRECT_URL = reverse_lazy("login")
