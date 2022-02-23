@@ -1,20 +1,9 @@
-from django.http import HttpResponse
+from django.views import generic
+from .forms import SignUpForm
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
 
 
-def users(request):
-    users = User.objects.all()
-    results = ", ".join([user.username for user in users])
-    return HttpResponse(results)
-
-
-class SignUpView(CreateView):
-    form_class = UserCreationForm
+class SignUpView(generic.CreateView):
+    form_class = SignUpForm
+    template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
-    template_name = "registration/signup.html"
